@@ -20,7 +20,6 @@ exports.userRegister = async (req, res) => {
       .status(201)
       .send({ message: "User created successfully", user: newUser });
   } catch (error) {
-    console.error("Registration error:", error.message);
     return res.status(500).send({ message: "Registration error" });
   }
 };
@@ -35,10 +34,8 @@ exports.userLogin = async (req, res) => {
     if (!compare) return res.status(401).send({ message: "Incorrect password" });
 
     const token = jwt.sign({ id: user._id }, jwtSecret);
-    console.log("Generated token:", token);
     return res.status(200).send({ token });
   } catch (error) {
-    console.error("Login error:", error);
     return res.status(500).send({ message: "Login error" });
   }
 };
