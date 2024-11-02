@@ -4,6 +4,7 @@ const cors = require('cors')
 const connectDb = require('./config/db')
 const userRoutes = require("./routes/user.routes");
 const experienceRoutes = require("./routes/experience.routes");
+const educationRoutes = require("./routes/education.routes");
 require('dotenv').config()
 
 // Connect to MongoDB
@@ -16,6 +17,7 @@ app.use(express.json());
 // Routes
 app.use("/auth", userRoutes)
 app.use("/experiences", experienceRoutes)
+app.use("/educations", educationRoutes)
 
 // Root route
 app.get("/", (req, res) => {
