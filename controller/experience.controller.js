@@ -53,7 +53,6 @@ exports.updateExperience = async (req, res) => {
           console.error("Error deleting old image:", err);
         }
       });
-
       updatedExperienceData.image = req.file.path;
     }
 
