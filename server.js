@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const connectDb = require('./config/db')
+const connectDb = require('./config/db.config')
 const userRoutes = require("./routes/user.routes");
 const experienceRoutes = require("./routes/experience.routes");
 const educationRoutes = require("./routes/education.routes");
+const contactRoutes = require('./routes/contact.routes');
 require('dotenv').config()
 
 // Connect to MongoDB
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/auth", userRoutes)
 app.use("/experiences", experienceRoutes)
 app.use("/educations", educationRoutes)
+app.use('/contact', contactRoutes);
 
 // Root route
 app.get("/", (req, res) => {
