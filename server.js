@@ -5,6 +5,7 @@ const connectDb = require('./config/db.config')
 const userRoutes = require("./routes/user.routes");
 const experienceRoutes = require("./routes/experience.routes");
 const educationRoutes = require("./routes/education.routes");
+const projectRoutes = require("./routes/project.routes");
 const contactRoutes = require('./routes/contact.routes');
 require('dotenv').config()
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/auth", userRoutes)
 app.use("/experiences", experienceRoutes)
 app.use("/educations", educationRoutes)
+app.use("/projects", projectRoutes)
 app.use('/contact', contactRoutes);
 
 // Root route
