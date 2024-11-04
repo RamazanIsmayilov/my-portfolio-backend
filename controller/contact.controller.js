@@ -1,25 +1,25 @@
 const transporter = require('../config/nodemailer.config');
 
 const sendContactMessage = (req, res) => {
-    const { firstname, lastname, message } = req.body;
+    const {email, firstname, lastname, message } = req.body;
 
     if (!firstname || !lastname || !message) {
-        return res.status(400).json({ error: 'Bütün sahələri doldurun!' });
+        return res.status(400).json({ error: 'Fill in all fields!' });
     }
 
     const mailOptions = {
-        from: 'your-email@gmail.com',
-        to: 'recipient-email@gmail.com', 
-        subject: 'Yeni əlaqə mesajı',
-        text: `Ad: ${firstname}\nSoyad: ${lastname}\nMesaj: ${message}`,
+        from: email,
+        to: 'ramazandev2024@gmail.com', 
+        subject: `Message from ${firstname}`,
+        text: `Firstname: ${firstname}\nLastname: ${lastname}\nEmail: ${email}\nMessage: ${message}`,
     };
 
     transporter.sendMail(mailOptions, (error) => {
         if (error) {
             console.log(error.message);
-            return res.status(500).json({ error: 'Mesaj göndərilmədi.' });
+            return res.status(500).json({ error: 'Message not sent.' });
         }
-        res.status(200).json({ success: 'Mesajınız uğurla göndərildi!' });
+        res.status(200).json({ success: 'Your message has been successfully sent!' });
     });
 };
 
