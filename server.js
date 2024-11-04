@@ -6,6 +6,7 @@ const userRoutes = require("./routes/user.routes");
 const experienceRoutes = require("./routes/experience.routes");
 const educationRoutes = require("./routes/education.routes");
 const projectRoutes = require("./routes/project.routes");
+const skillRoutes = require("./routes/skill.routes");
 const contactRoutes = require('./routes/contact.routes');
 require('dotenv').config()
 
@@ -21,6 +22,7 @@ app.use("/auth", userRoutes)
 app.use("/experiences", experienceRoutes)
 app.use("/educations", educationRoutes)
 app.use("/projects", projectRoutes)
+app.use("/skills", skillRoutes)
 app.use('/contact', contactRoutes);
 
 // Root route
