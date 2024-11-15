@@ -8,7 +8,6 @@ const educationSchema = new mongoose.Schema({
   },
   endDate: {
     type: mongoose.Schema.Types.Mixed,
-    required: true,
     trim: true,
   },
   companyName:{

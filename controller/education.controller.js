@@ -4,16 +4,19 @@ const fs = require('fs');
 
 exports.createEducation = async (req, res) => {
   try {
+    const endDate = req.body.endDate ? req.body.endDate : 'present';
+    const imageUrl = req.file ? `http://localhost:5001/uploads/${req.file.filename}` : null;
     const educationData = {
       startDate: req.body.startDate,
-      endDate: req.body.endDate,
+      endDate: endDate,
       companyName: req.body.companyName,
       position: req.body.position,
       description: req.body.description,
-      image: req.file ? req.file.path : null,
+      image: imageUrl,
     };
     const education = new Education(educationData);
     await education.save();
+    
     return res
       .status(201)
       .send({ message: "Education created successfully", education });
@@ -83,6 +86,8 @@ exports.deleteEducation = async (req, res) => {
 
     return res.status(200).send({ message: "Education successfully deleted" });
   } catch (error) {
+    console.log(error.message);
+    
     return res.status(500).send({ message: error.message });
   }
 };
