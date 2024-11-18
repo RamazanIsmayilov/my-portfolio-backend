@@ -40,10 +40,11 @@ exports.updateEducation = async (req, res) => {
     if(!education){
       return res.status(404).send({ message: "No education found" });
     }
-
+    
+    const endDate = req.body.endDate ? req.body.endDate : 'present';
     const updatedEducationData = {
       startDate: req.body.startDate,
-      endDate: req.body.endDate,
+      endDate: endDate,
       companyName: req.body.companyName,
       position: req.body.position,
       description: req.body.description,
@@ -76,13 +77,13 @@ exports.deleteEducation = async (req, res) => {
     if (!education) {
       return res.status(404).send({ message: "No education found" });
     }
-    const imagePath = path.join(__dirname, "..", education.image);
-    await Education.findByIdAndDelete(req.params.id);
+    const imagePath = education.image.replace("http://localhost:5001/", "");
     fs.unlink(imagePath, (err) => {
       if (err) {
         console.error("Error deleting image:", err);
       }
     });
+    await Education.findByIdAndDelete(req.params.id);
 
     return res.status(200).send({ message: "Education successfully deleted" });
   } catch (error) {
